@@ -13,12 +13,6 @@ header <- dashboardHeader(title = "Salaries")
 
 # Body
 body <- dashboardBody(
-    tags$head(
-        tags$link(
-            rel = "stylesheet", type = "text/css",
-            href = "css/styles.css"
-        )
-    ),
     tabItems(
         home_page,
         major_general_page,
@@ -29,6 +23,12 @@ body <- dashboardBody(
 )
 
 dashboardPage(
+    tags$head(
+        tags$link(
+            rel = "stylesheet",
+            type = "text/css", href = "styles.css"
+        )
+    ),
     skin = "red",
     header = header,
     sidebar = sidebar,

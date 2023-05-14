@@ -1,6 +1,3 @@
-library(shinydashboard)
-library(shiny)
-
 # Sidebar
 sidebar <- dashboardSidebar(sidebarMenu(
     menuItem("Home",

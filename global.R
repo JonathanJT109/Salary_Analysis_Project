@@ -1,0 +1,14 @@
+# Load the required libraries
+library(shiny)
+library(ggplot2)
+library(readr)
+library(dplyr)
+library(tidyr)
+library(shinydashboard)
+library(DT)
+library(scales)
+
+# Load the data set
+data1 <- read.csv("data/degrees-that-pay-back.csv")
+data2 <- read.csv("data/salaries-by-region.csv")
+data3 <- read.csv("data/salaries-by-college-type.csv")
