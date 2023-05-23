@@ -48,8 +48,6 @@ major_figure2 <- function(major_data, y_axis, dot_size) {
         )
 }
 
-# TODO: Fix the regression line
-# TODO: Add a prediction model
 major_figure3 <- function(major_data, major) {
     major_data <- rename(
         major_data,
@@ -59,6 +57,8 @@ major_figure3 <- function(major_data, major) {
         "90th Percentile" = "Mid.Career.90th.Percentile.Salary"
     )
 
+    percentiles <- c(10, 25, 75, 90)
+
     major_data_filtered <- major_data %>%
         filter(Undergraduate.Major == major) %>%
         pivot_longer(-c(
@@ -66,28 +66,35 @@ major_figure3 <- function(major_data, major) {
             Mid.Career.Median.Salary
         ), names_to = "variable", values_to = "value")
 
-    ggplot(major_data_filtered, aes(x = variable, y = value)) +
+    p <- ggplot(major_data_filtered, aes(x = percentiles, y = value)) +
         geom_smooth(aes(group = 1),
             linewidth = 1, method = "lm",
             se = FALSE, color = "red", formula = y ~ x
         ) +
-        geom_point(size = 3) +
-        geom_text(aes(label = paste("Salary:", dollar(value))), vjust = -0.9, size = 5) +
+        geom_point(size = 1) +
+        geom_text(aes(label = paste("Salary:", dollar(value))), nudge_x = 2, nudge_y = 3000, size = 3) +
         labs(
-            x = "Undergraduate Major",
+            x = "Percentile",
             y = "Salary (in $)",
-            size = 19
+            size = 19,
+            title = paste("Percentile Salaries:", major)
         ) +
+        xlim(0, 100) +
+        ylim(min(major_data_filtered$value) - 5000, max(major_data_filtered$value) + 5000) +
+        scale_y_continuous(labels = label_number_si()) +
         theme(
-            axis.title.x = element_text(size = 15, margin = margin(t = 20)),
-            axis.title.y = element_text(size = 15, margin = margin(r = 20)),
-            axis.text.x = element_text(angle = 90, hjust = 1, size = 12),
-            axis.text.y = element_text(size = 12),
+            axis.title.x = element_text(size = 12, margin = margin(t = 20)),
+            axis.title.y = element_text(size = 12, margin = margin(r = 20)),
+            axis.text.x = element_text(angle = 90, hjust = 1, size = 9),
+            axis.text.y = element_text(size = 9),
             legend.position = "top",
             legend.direction = "horizontal",
             legend.text = element_text(size = 12),
             legend.title = element_text(size = 13)
         )
+
+    p <- ggplotly(p)
+    p
 }
 
 major_figure4 <- function(major_data) {

@@ -7,6 +7,7 @@ library(tidyr)
 library(shinydashboard)
 library(DT)
 library(scales)
+library(plotly)
 
 # Load the data set
 data1 <- read.csv("data/degrees-that-pay-back.csv")

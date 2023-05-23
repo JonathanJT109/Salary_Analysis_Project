@@ -16,13 +16,18 @@ major_general_page <- tabItem(
     )
 )
 
+# TODO: Fix title "Top 10 Best College Majors"
+# TODO: Add descriptions for the plots
+# TODO: Add more styles for the page
 major_specific_page <- tabItem(
     tabName = "major_specific",
     fluidRow(
+        tags$h2("Salaries by Percentiles", class = "major_general_page-title"),
         column(4, selectInput("major", "Select major:",
             choices = unique(data1$Undergraduate.Major)
         )),
-        box(plotOutput("m3"), width = 12, height = 850),
+        box(plotlyOutput("m3"), width = 12, height = 500),
+        tags$h2("Top 10 Best College Majors", class = "major_general_page-title"),
         DT::dataTableOutput("m4")
     )
 )
