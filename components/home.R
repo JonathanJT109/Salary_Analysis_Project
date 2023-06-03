@@ -35,7 +35,13 @@ home_page <- tabItem(
             data, including salary trends by region, industry, and college
             attended. We also aim to provide simple-to-understand documentation
             on the process of building these graphs."),
-                  br()
+                  br(),
+                  p("Here is the link tot the GitHub repository if
+                   you would like to learn more about the project:"),
+                  p(a("Salary Explorer GitHub Repository",
+                        href = "https://github.com/JonathanJT109/Salary_Analysis_Project",
+                        target = "_blank"
+                  )),
             )
       )
 )

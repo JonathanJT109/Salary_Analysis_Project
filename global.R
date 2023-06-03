@@ -13,6 +13,7 @@ library(mapdata)
 library(ggthemes)
 library(RColorBrewer)
 library(cowplot)
+library(mapproj)
 
 # Load the data set
 data1 <- read.csv("data/degrees-that-pay-back.csv")

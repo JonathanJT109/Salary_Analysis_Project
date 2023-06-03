@@ -2,7 +2,7 @@
 # TODO: Add a title to the ggplot map
 # TODO: Add a table below the map with the average salary for each region
 
-region_figure1 <- function(region_data) {
+region_figure1 <- function() {
     # Get the map data for the US
     usa_map <- map_data("state")
 
@@ -34,14 +34,10 @@ region_figure1 <- function(region_data) {
             )
         )
 
-    ggplot() +
+    ggplot(data = usa_map, aes(long, lat)) +
         geom_map(
             data = usa_map, map = usa_map,
-            aes(long, lat, map_id = region), color = "#2b2b2b", fill = NA
-        ) +
-        geom_map(
-            data = usa_map, map = usa_map,
-            aes(long, lat, map_id = region), color = "#2b2b2b", fill = usa_map$color
+            aes(map_id = region), color = "#2b2b2b", fill = usa_map$color
         ) +
         scale_color_identity() +
         coord_map("polyconic") +

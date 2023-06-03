@@ -35,7 +35,7 @@ function(input, output) {
     })
 
     output$f1 <- renderPlot({
-        region_figure1(data2)
+        region_figure1()
     })
 
     output$c1 <- renderDT({
