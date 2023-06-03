@@ -1,4 +1,6 @@
 source("utilities/major_figures.R")
+source("utilities/region_figures.R")
+source("utilities/college_figures.R")
 
 # Clean the data set
 major_data <- data1 %>%
@@ -30,5 +32,13 @@ function(input, output) {
     # Figure 2 for major_specific_page
     output$m4 <- DT::renderDataTable({
         major_figure4(major_data)
+    })
+
+    output$f1 <- renderPlot({
+        region_figure1(data2)
+    })
+
+    output$c1 <- renderDT({
+        college_figure1(data3, input$uni)
     })
 }

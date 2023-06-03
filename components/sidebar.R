@@ -9,13 +9,9 @@ sidebar <- dashboardSidebar(sidebarMenu(
         menuSubItem("Specific", tabName = "major_specific")
     ),
     menuItem("Salaries by region",
-        tabName = "region", icon = icon("map"),
-        menuSubItem("General", tabName = "region_general"),
-        menuSubItem("Specific", tabName = "region_specific")
+        tabName = "region", icon = icon("map")
     ),
     menuItem("Salaries by college",
-        tabName = "college", icon = icon("graduation-cap"),
-        menuSubItem("General", tabName = "college_general"),
-        menuSubItem("Specific", tabName = "college_specific")
+        tabName = "college", icon = icon("graduation-cap")
     )
 ))

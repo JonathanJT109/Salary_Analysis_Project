@@ -8,6 +8,11 @@ library(shinydashboard)
 library(DT)
 library(scales)
 library(plotly)
+library(maps)
+library(mapdata)
+library(ggthemes)
+library(RColorBrewer)
+library(cowplot)
 
 # Load the data set
 data1 <- read.csv("data/degrees-that-pay-back.csv")
