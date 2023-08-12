@@ -1,3 +1,4 @@
+
 region_figure1 <- function(data) {
   
   map_regions <- function(region) {
@@ -32,50 +33,8 @@ region_figure1 <- function(data) {
   
   ggplot(df, aes(long, lat)) +
     geom_polygon(aes(group = group, fill = avg_starting_median_salary)) +
-    labs(title = "Average Starting Salary by Region", fill = "Average Starting\nSalary") +
-    coord_map("polyconic") +
-    theme_map()
+    labs(fill = "Average Starting Median Salary") +
+    coord_map("polyconic") 
 }
 
-region_figure2 <- function(data) {
-  df <- data %>%
-    group_by(Region) %>%
-    summarise(
-      "Average Starting Salary" = round(mean(Starting.Median.Salary), 2),
-      "Average Mid-Career Salary" = round(mean(Mid.Career.Median.Salary), 2)
-    ) %>%
-    mutate(
-      "Average Starting Salary" = dollar_format(
-        prefix = "$", 
-        suffix = "", 
-        big.mark = ",", 
-        decimal.mark = ".", 
-        digits = 2
-      )(`Average Starting Salary`),
-      "Average Mid-Career Salary" = dollar_format(
-        prefix = "$", 
-        suffix = "", 
-        big.mark = ",", 
-        decimal.mark = ".", 
-        digits = 2
-      )(`Average Mid-Career Salary`)
-      )
-  
-  datatable(
-    df,
-    options = list(
-      dom = "t",
-      paging = FALSE,
-      ordering = FALSE,
-      info = FALSE,
-      searching = FALSE,
-      columnDefs = list(
-        list(width = "150px", targets = "_all")
-      ),
-      language = list(
-        emptyTable = "No data available",
-        zeroRecords = "No matching records found"
-      )
-    )
-  )
-}
+region_figure1(data2)

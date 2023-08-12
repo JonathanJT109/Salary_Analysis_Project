@@ -16,9 +16,6 @@ major_general_page <- tabItem(
     )
 )
 
-# TODO: Fix title "Top 10 Best College Majors"
-# TODO: Add descriptions for the plots
-# TODO: Add more styles for the page
 major_specific_page <- tabItem(
     tabName = "major_specific",
     fluidRow(

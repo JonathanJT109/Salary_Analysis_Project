@@ -1,5 +1,3 @@
-# TODO: Add documentation, Fix the title, add description
-# TODO: add a bar graph with the best schools
 
 college_figure1 <- function(data, university) {
     filtered_data <- data %>%

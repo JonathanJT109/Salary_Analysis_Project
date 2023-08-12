@@ -1,5 +1,3 @@
-# TODO: Add link to repo
-
 home_page <- tabItem(
       tabName = "home",
       fluidPage(

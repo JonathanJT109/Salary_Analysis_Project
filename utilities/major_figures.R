@@ -1,5 +1,6 @@
 major_figure1 <- function(major_data) {
     major_data_long <- major_data %>%
+        select(-Percent.change.from.Starting.to.Mid.Career.Salary) %>%
         pivot_longer(-Undergraduate.Major, names_to = "variable", values_to = "value")
 
     ggplot(major_data_long, aes(x = Undergraduate.Major, y = value, color = variable, group = variable)) +
@@ -23,6 +24,9 @@ major_figure1 <- function(major_data) {
 }
 
 major_figure2 <- function(major_data, y_axis, dot_size) {
+    major_data <- major_data %>%
+      select(-Percent.change.from.Starting.to.Mid.Career.Salary)
+    
     ggplot(major_data, aes(
         x = Undergraduate.Major,
         y = !!sym(y_axis)
@@ -60,6 +64,7 @@ major_figure3 <- function(major_data, major) {
     percentiles <- c(10, 25, 75, 90)
 
     major_data_filtered <- major_data %>%
+        select(-Percent.change.from.Starting.to.Mid.Career.Salary) %>%
         filter(Undergraduate.Major == major) %>%
         pivot_longer(-c(
             Undergraduate.Major, Starting.Median.Salary,
@@ -75,13 +80,13 @@ major_figure3 <- function(major_data, major) {
         geom_text(aes(label = paste("Salary:", dollar(value))), nudge_x = 2, nudge_y = 3000, size = 3) +
         labs(
             x = "Percentile",
-            y = "Salary (in $)",
+            y = "Salary",
             size = 19,
             title = paste("Percentile Salaries:", major)
         ) +
         xlim(0, 100) +
         ylim(min(major_data_filtered$value) - 5000, max(major_data_filtered$value) + 5000) +
-        scale_y_continuous(labels = label_number_si()) +
+        scale_y_continuous(labels = label_number(scale_cut = cut_short_scale())) +
         theme(
             axis.title.x = element_text(size = 12, margin = margin(t = 20)),
             axis.title.y = element_text(size = 12, margin = margin(r = 20)),
@@ -99,6 +104,7 @@ major_figure3 <- function(major_data, major) {
 
 major_figure4 <- function(major_data) {
     top_10 <- major_data %>%
+        select(-Percent.change.from.Starting.to.Mid.Career.Salary) %>%
         arrange(desc("Percent change from Starting to Mid-Career Salary")) %>%
         slice(1:10)
 

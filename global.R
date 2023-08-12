@@ -14,8 +14,10 @@ library(ggthemes)
 library(RColorBrewer)
 library(cowplot)
 library(mapproj)
+library(jsonlite)
 
 # Load the data set
-data1 <- read.csv("data/degrees-that-pay-back.csv")
-data2 <- read.csv("data/salaries-by-region.csv")
-data3 <- read.csv("data/salaries-by-college-type.csv")
+source("utilities/parse_data.R")
+data1 <- parse_data("data/degrees-that-pay-back.csv")
+data2 <- parse_data("data/salaries-by-region.csv")
+data3 <- parse_data("data/salaries-by-college-type.csv")
